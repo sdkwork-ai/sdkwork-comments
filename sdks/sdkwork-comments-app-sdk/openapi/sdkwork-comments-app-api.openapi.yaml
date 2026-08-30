@@ -39,7 +39,7 @@
           "comments"
         ],
         "summary": "Get a comments thread summary.",
-        "operationId": "comments.threads.retrieve",
+        "operationId": "threads.retrieve",
         "parameters": [
           {
             "name": "threadId",
@@ -47,6 +47,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -173,7 +183,7 @@
           "comments"
         ],
         "summary": "List comments in a thread.",
-        "operationId": "comments.comments.list",
+        "operationId": "list",
         "parameters": [
           {
             "name": "threadId",
@@ -210,6 +220,16 @@
             "required": false,
             "schema": {
               "$ref": "#/components/schemas/CommentStatus"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -342,7 +362,7 @@
           "comments"
         ],
         "summary": "Create a comment in a thread.",
-        "operationId": "comments.comments.create",
+        "operationId": "create",
         "parameters": [
           {
             "name": "threadId",
@@ -486,7 +506,7 @@
           "comments"
         ],
         "summary": "Update an existing comment.",
-        "operationId": "comments.comments.update",
+        "operationId": "update",
         "parameters": [
           {
             "name": "commentId",
@@ -494,6 +514,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -628,7 +658,7 @@
           "comments"
         ],
         "summary": "Delete an existing comment.",
-        "operationId": "comments.comments.delete",
+        "operationId": "delete",
         "parameters": [
           {
             "name": "commentId",
@@ -636,6 +666,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -732,7 +772,7 @@
           "comments"
         ],
         "summary": "Create or replace a comment reaction.",
-        "operationId": "comments.reactions.update",
+        "operationId": "reactions.update",
         "parameters": [
           {
             "name": "commentId",
@@ -748,6 +788,16 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/CommentReactionType"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -872,7 +922,7 @@
           "comments"
         ],
         "summary": "Delete a comment reaction.",
-        "operationId": "comments.reactions.delete",
+        "operationId": "reactions.delete",
         "parameters": [
           {
             "name": "commentId",
@@ -888,6 +938,16 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/CommentReactionType"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -984,7 +1044,7 @@
           "engagement"
         ],
         "summary": "Get cross-content engagement summary for a target.",
-        "operationId": "engagement.targets.retrieve",
+        "operationId": "targets.retrieve",
         "parameters": [
           {
             "name": "targetKind",
@@ -1000,6 +1060,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -1126,7 +1196,7 @@
           "engagement"
         ],
         "summary": "Like any supported content target.",
-        "operationId": "engagement.likes.update",
+        "operationId": "likes.update",
         "parameters": [
           {
             "name": "targetKind",
@@ -1142,6 +1212,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -1266,7 +1346,7 @@
           "engagement"
         ],
         "summary": "Remove a like from any supported content target.",
-        "operationId": "engagement.likes.delete",
+        "operationId": "likes.delete",
         "parameters": [
           {
             "name": "targetKind",
@@ -1282,6 +1362,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -1378,7 +1468,7 @@
           "engagement"
         ],
         "summary": "Favorite any supported content target.",
-        "operationId": "engagement.favorites.update",
+        "operationId": "favorites.update",
         "parameters": [
           {
             "name": "targetKind",
@@ -1394,6 +1484,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -1518,7 +1618,7 @@
           "engagement"
         ],
         "summary": "Remove a favorite from any supported content target.",
-        "operationId": "engagement.favorites.delete",
+        "operationId": "favorites.delete",
         "parameters": [
           {
             "name": "targetKind",
@@ -1534,6 +1634,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -1630,7 +1740,7 @@
           "engagement"
         ],
         "summary": "Record a visit for any supported content target.",
-        "operationId": "engagement.visits.create",
+        "operationId": "visits.create",
         "parameters": [
           {
             "name": "targetKind",
@@ -1782,7 +1892,7 @@
           "engagement"
         ],
         "summary": "List the current user's cross-content visit history.",
-        "operationId": "engagement.visits.list",
+        "operationId": "visits.list",
         "parameters": [
           {
             "name": "page",
@@ -1819,6 +1929,16 @@
             "required": false,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],

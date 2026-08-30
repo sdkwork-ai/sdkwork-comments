@@ -39,7 +39,7 @@
           "comments"
         ],
         "summary": "List comments threads for backend administration.",
-        "operationId": "comments.threads.list",
+        "operationId": "threads.list",
         "parameters": [
           {
             "name": "page",
@@ -60,6 +60,16 @@
               "minimum": 1,
               "maximum": 200,
               "default": 20
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -194,7 +204,7 @@
           "comments"
         ],
         "summary": "Get a backend comments thread summary.",
-        "operationId": "comments.threads.retrieve",
+        "operationId": "threads.retrieve",
         "parameters": [
           {
             "name": "threadId",
@@ -202,6 +212,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -328,7 +348,7 @@
           "comments"
         ],
         "summary": "List comments in a thread for backend administration.",
-        "operationId": "comments.comments.list",
+        "operationId": "list",
         "parameters": [
           {
             "name": "threadId",
@@ -365,6 +385,16 @@
             "required": false,
             "schema": {
               "$ref": "#/components/schemas/CommentStatus"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -499,7 +529,7 @@
           "comments"
         ],
         "summary": "Delete a comment as a backend operator.",
-        "operationId": "comments.comments.delete",
+        "operationId": "delete",
         "parameters": [
           {
             "name": "commentId",
@@ -507,6 +537,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -603,7 +643,7 @@
           "comments"
         ],
         "summary": "List comments moderation cases.",
-        "operationId": "comments.moderation.cases.list",
+        "operationId": "moderation.cases.list",
         "parameters": [
           {
             "name": "page",
@@ -632,6 +672,16 @@
             "required": false,
             "schema": {
               "$ref": "#/components/schemas/CommentStatus"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -766,7 +816,7 @@
           "comments"
         ],
         "summary": "Apply a moderation decision to a comment.",
-        "operationId": "comments.moderation.update",
+        "operationId": "moderation.update",
         "parameters": [
           {
             "name": "commentId",
@@ -774,6 +824,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -910,7 +970,7 @@
           "engagement"
         ],
         "summary": "Get backend cross-content engagement summary for a target.",
-        "operationId": "engagement.targets.retrieve",
+        "operationId": "targets.retrieve",
         "parameters": [
           {
             "name": "targetKind",
@@ -926,6 +986,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
@@ -1052,7 +1122,7 @@
           "engagement"
         ],
         "summary": "List cross-content visit history for backend inspection.",
-        "operationId": "engagement.visits.list",
+        "operationId": "visits.list",
         "parameters": [
           {
             "name": "page",
@@ -1097,6 +1167,16 @@
             "required": false,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         ],
