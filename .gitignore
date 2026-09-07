@@ -63,3 +63,9 @@ config/*.local.toml
 Thumbs.db
 # Runtime-generated environment configuration
 **/public/runtime-env.json
+sdks/**/*.js
+sdks/**/*.d.ts
+sdks/**/*.js.map
+sdks/**/*.d.ts.map
+
+# Local build artifacts / workspace junk (auto-sync)
