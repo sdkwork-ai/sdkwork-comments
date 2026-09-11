@@ -6,8 +6,15 @@
   "type": "module",
   "packageManager": "pnpm@10.33.0",
   "scripts": {
-    "stop": "node ../sdkwork-specs/tools/stop-sdkwork-workspace-processes.mjs --workspace .",
-    "test": "vitest run packages",
+    "stop": "pnpm exec sdkwork-app stop",
+    "dev": "pnpm dev:standalone",
+    "dev:standalone": "pnpm exec sdkwork-app dev --deployment-profile standalone",
+    "dev:cloud": "pnpm exec sdkwork-app dev --deployment-profile cloud",
+    "build": "pnpm exec sdkwork-app build",
+    "test": "pnpm exec sdkwork-app test",
+    "check": "pnpm exec sdkwork-app check",
+    "verify": "pnpm exec sdkwork-app verify",
+    "clean": "pnpm exec sdkwork-app clean",
     "test:contracts": "vitest run apps/sdkwork-comments-common/packages/sdkwork-comments-contracts/tests/commentsContracts.test.ts",
     "test:service": "vitest run apps/sdkwork-comments-common/packages/sdkwork-comments-service/tests/commentsService.test.ts",
     "test:governance": "node scripts/comments-governance.test.mjs",
@@ -30,12 +37,18 @@
     "api:assembly:validate": "node ../sdkwork-specs/tools/validate-api-assembly.mjs --root .",
     "check:app-composition": "node ../sdkwork-specs/tools/verify-repo.mjs --root .",
     "db:postgres:plan": "cargo run --manifest-path ../sdkwork-database/Cargo.toml -p sdkwork-database-cli -- --app-root . plan --engine postgres",
-    "db:postgres:init": "cargo run --manifest-path ../sdkwork-database/Cargo.toml -p sdkwork-database-cli -- --app-root . init --engine postgres"
+    "db:postgres:init": "cargo run --manifest-path ../sdkwork-database/Cargo.toml -p sdkwork-database-cli -- --app-root . init --engine postgres",
+    "_sdkwork:test": "vitest run packages",
+    "_sdkwork:check": "pnpm run check:app-composition",
+    "_sdkwork:clean": "cargo clean",
+    "_sdkwork:verify": "pnpm run check && pnpm run test",
+    "_sdkwork:build": "cargo build --workspace --release"
   },
   "devDependencies": {
     "@types/node": "^25.5.2",
     "typescript": "^6.0.2",
-    "vitest": "^4.1.2"
+    "vitest": "^4.1.2",
+    "@sdkwork/app-topology": "workspace:*"
   },
   "exports": {
     ".": {
