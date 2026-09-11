@@ -1,10 +1,14 @@
 [package]
+rust-version.workspace = true
 name = "sdkwork-comments-database-host"
 edition = "2021"
 license = "MIT"
 version = "0.1.0"
 description = "SDKWork Comments database lifecycle bootstrap."
 
+
+[lints]
+workspace = true
 [lib]
 name = "sdkwork_comments_database_host"
 path = "src/lib.rs"
