@@ -69,3 +69,8 @@ sdks/**/*.js.map
 sdks/**/*.d.ts.map
 
 # Local build artifacts / workspace junk (auto-sync)
+
+# Agent scratch / one-off helper scripts (dot-prefixed tmp files). Added by
+# repo-commit sweep; targeted rules only.
+.tmp-*
+.tmp_*

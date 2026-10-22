@@ -1,7 +1,7 @@
 import { appApiPath } from './paths';
 import type { ApiRequestOptions, HttpClient } from '../http/client';
 
-import type { Comment, CommentCreateRequest, CommentReactionResponse, CommentReactionType, CommentResponse, CommentStatus, CommentsThreadSummaryResponse, CommentUpdateRequest, PageInfo } from '../types';
+import type { Comment, CommentCreateRequest, CommentReactionResponse, CommentReactionType, CommentResponse, CommentStatus, CommentsThread, CommentsThreadEnsureRequest, CommentsThreadSummaryResponse, CommentUpdateRequest, PageInfo } from '../types';
 
 
 export class CommentsReactionsApi {
@@ -74,6 +74,11 @@ export class CommentsThreadsApi {
 /** Get a comments thread summary. */
   async retrieve(threadId: string, requestOptions?: ApiRequestOptions): Promise<CommentsThreadSummaryResponse> {
     return this.client.request<CommentsThreadSummaryResponse>(appApiPath(`/comments/threads/${serializePathParameter(threadId, { name: 'threadId', style: 'simple', explode: false })}/summary`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
+  }
+
+/** Ensure the comments thread for an owner. */
+  async ensure(body: CommentsThreadEnsureRequest, requestOptions?: ApiRequestOptions): Promise<CommentsThread> {
+    return this.client.request<CommentsThread>(appApiPath(`/comments/threads/ensure`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 

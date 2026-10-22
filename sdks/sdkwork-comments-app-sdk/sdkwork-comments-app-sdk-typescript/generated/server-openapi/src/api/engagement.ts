@@ -1,7 +1,7 @@
 import { appApiPath } from './paths';
 import type { ApiRequestOptions, HttpClient } from '../http/client';
 
-import type { EngagementFavoriteResponse, EngagementReactionResponse, EngagementSummaryResponse, EngagementTargetKind, EngagementVisit, EngagementVisitCreateRequest, EngagementVisitResponse, PageInfo } from '../types';
+import type { EngagementFavoriteResponse, EngagementFavoritesListResponse, EngagementReactionResponse, EngagementSummaryResponse, EngagementTargetKind, EngagementVisit, EngagementVisitCreateRequest, EngagementVisitResponse, PageInfo } from '../types';
 
 
 export interface EngagementVisitsListParams {
@@ -36,6 +36,13 @@ export class EngagementVisitsApi {
   }
 }
 
+export interface EngagementFavoritesListParams {
+  page?: number;
+  pageSize?: number;
+  targetKind?: string;
+  targetId?: string;
+}
+
 export class EngagementFavoritesApi {
   private client: HttpClient;
 
@@ -52,6 +59,17 @@ export class EngagementFavoritesApi {
 /** Remove a favorite from any supported content target. */
   async delete(targetKind: EngagementTargetKind, targetId: string, requestOptions?: ApiRequestOptions): Promise<void> {
     return this.client.request<void>(appApiPath(`/engagement/targets/${serializePathParameter(targetKind, { name: 'targetKind', style: 'simple', explode: false })}/${serializePathParameter(targetId, { name: 'targetId', style: 'simple', explode: false })}/favorites`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'DELETE' as any });
+  }
+
+/** List the current user favorite targets. */
+  async list(params?: EngagementFavoritesListParams, requestOptions?: ApiRequestOptions): Promise<EngagementFavoritesListResponse> {
+    const query = buildQueryString([
+      { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
+      { name: 'target_kind', value: params?.targetKind, style: 'form', explode: true, allowReserved: false },
+      { name: 'target_id', value: params?.targetId, style: 'form', explode: true, allowReserved: false },
+    ]);
+    return this.client.request<EngagementFavoritesListResponse>(appendQueryString(appApiPath(`/engagement/favorites`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 

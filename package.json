@@ -7,6 +7,7 @@
   "packageManager": "pnpm@10.33.0",
   "scripts": {
     "stop": "pnpm exec sdkwork-app stop",
+    "dev:runtime": "node apps/sdkwork-comments-runtime/server.mjs",
     "dev": "pnpm dev:standalone",
     "dev:standalone": "pnpm exec sdkwork-app dev --deployment-profile standalone",
     "dev:cloud": "pnpm exec sdkwork-app dev --deployment-profile cloud",

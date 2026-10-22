@@ -46,6 +46,8 @@ export type { SdkWorkPlatformErrorCode } from './sdk-work-platform-error-code';
 export type { SdkWorkResourceResponse } from './sdk-work-resource-response';
 export type { SdkWorkListResponse } from './sdk-work-list-response';
 export type { SdkWorkCommandResponse } from './sdk-work-command-response';
+export type { CommentsThreadEnsureRequest } from './comments-thread-ensure-request';
+export type { EngagementFavoritesListResponse } from './engagement-favorites-list-response';
 export type { CommentsThreadsRetrieveResponse } from './comments-threads-retrieve-response';
 export type { CommentsListGetResponse } from './comments-list-get-response';
 export type { CommentsCreateResponse201 } from './comments-create-response201';
@@ -56,3 +58,5 @@ export type { EngagementLikesUpdateResponse } from './engagement-likes-update-re
 export type { EngagementFavoritesUpdateResponse } from './engagement-favorites-update-response';
 export type { EngagementVisitsCreateResponse201 } from './engagement-visits-create-response201';
 export type { EngagementVisitsListResponse } from './engagement-visits-list-response';
+export type { CommentsThreadsEnsureResponse201 } from './comments-threads-ensure-response201';
+export type { EngagementFavoritesListGetResponse } from './engagement-favorites-list-get-response';
