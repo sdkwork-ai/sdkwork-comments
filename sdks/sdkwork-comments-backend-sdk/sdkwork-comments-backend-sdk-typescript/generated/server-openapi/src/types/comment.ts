@@ -5,6 +5,11 @@ export interface Comment {
   threadId: string;
   parentId?: string;
   authorId: string;
+  rating?: number;
+  metadata?: Record<string, unknown>;
+  likeCount?: number;
+  viewerLiked?: boolean;
+  editedAt?: string;
   body: string;
   status: CommentStatus;
   createdAt: string;

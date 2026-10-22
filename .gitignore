@@ -74,3 +74,7 @@ sdks/**/*.d.ts.map
 # repo-commit sweep; targeted rules only.
 .tmp-*
 .tmp_*
+
+# Local backup copies of previously generated SDK trees (superseded by the
+# tracked `server-openapi` directory). Targeted rule: only the `-old*` siblings.
+**/server-openapi-old*/

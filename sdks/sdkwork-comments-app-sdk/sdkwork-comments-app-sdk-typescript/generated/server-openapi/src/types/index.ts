@@ -6,6 +6,7 @@ export type { CommentStatus } from './comment-status';
 export type { CommentReactionType } from './comment-reaction-type';
 export type { EngagementTargetKind } from './engagement-target-kind';
 export type { CommentsThread } from './comments-thread';
+export type { CommentQuote } from './comment-quote';
 export type { Comment } from './comment';
 export type { CommentReaction } from './comment-reaction';
 export type { EngagementReaction } from './engagement-reaction';

@@ -33,8 +33,16 @@ CREATE TABLE IF NOT EXISTS comments_comment (
     organization_id BIGINT NOT NULL DEFAULT 0,
     thread_id BIGINT NOT NULL,
     parent_comment_id BIGINT,
+    root_comment_id BIGINT REFERENCES comments_comment (id) ON DELETE SET NULL,
+    quote_comment_id BIGINT REFERENCES comments_comment (id) ON DELETE SET NULL,
     author_id BIGINT NOT NULL DEFAULT 0,
+    author_name VARCHAR(128),
+    author_avatar_url TEXT,
     body_text TEXT NOT NULL,
+    reply_count INTEGER NOT NULL DEFAULT 0,
+    rating SMALLINT CHECK (rating IS NULL OR (rating >= 1 AND rating <= 5)),
+    metadata_json JSONB NOT NULL DEFAULT '{}'::jsonb,
+    edited_at TIMESTAMPTZ,
     status VARCHAR(64) NOT NULL DEFAULT 'published',
     moderation_status VARCHAR(64) NOT NULL DEFAULT 'none',
     payload_json JSONB NOT NULL DEFAULT '{}'::jsonb,
@@ -198,6 +206,16 @@ CREATE INDEX IF NOT EXISTS idx_comments_thread_owner
 
 CREATE INDEX IF NOT EXISTS idx_comments_comment_thread_created
     ON comments_comment (tenant_id, organization_id, thread_id, created_at);
+
+CREATE INDEX IF NOT EXISTS idx_comments_comment_thread_root_created
+    ON comments_comment (tenant_id, organization_id, thread_id, root_comment_id, created_at);
+
+CREATE INDEX IF NOT EXISTS idx_comments_comment_quote
+    ON comments_comment (quote_comment_id);
+
+CREATE INDEX IF NOT EXISTS idx_comments_comment_rating
+    ON comments_comment (thread_id, rating)
+    WHERE rating IS NOT NULL;
 
 CREATE INDEX IF NOT EXISTS idx_comments_comment_parent_created
     ON comments_comment (tenant_id, organization_id, parent_comment_id, created_at);

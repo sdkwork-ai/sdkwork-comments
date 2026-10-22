@@ -1341,14 +1341,9 @@
       },
       "CommentOwnerKind": {
         "type": "string",
-        "enum": [
-          "article",
-          "course-lesson",
-          "market-item",
-          "news-item",
-          "social-post",
-          "video"
-        ]
+        "minLength": 1,
+        "maxLength": 64,
+        "pattern": "^[a-z0-9][a-z0-9-]*$"
       },
       "CommentStatus": {
         "type": "string",
@@ -1439,6 +1434,27 @@
           },
           "authorId": {
             "type": "string"
+          },
+          "rating": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "likeCount": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "viewerLiked": {
+            "type": "boolean"
+          },
+          "editedAt": {
+            "type": "string",
+            "format": "date-time"
           },
           "body": {
             "type": "string"
@@ -1757,6 +1773,26 @@
           },
           "parentId": {
             "type": "string"
+          },
+          "quoteId": {
+            "type": "string"
+          },
+          "authorName": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "authorAvatarUrl": {
+            "type": "string",
+            "maxLength": 2048
+          },
+          "rating": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
           }
         }
       },

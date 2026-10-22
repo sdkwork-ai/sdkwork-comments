@@ -56,7 +56,7 @@
     },
     {
       "path": "src/api/comments.ts",
-      "sha256": "fd9c7923635e21d4087ce10fbd0c02d1032042a675f758528e53231c2d0557bc"
+      "sha256": "fe8f4a61257f3f73ae5c35be7693cbb777b0c79aad862101e7f124f0f4c85e93"
     },
     {
       "path": "src/api/engagement.ts",
@@ -92,7 +92,7 @@
     },
     {
       "path": "src/types/comment-create-request.ts",
-      "sha256": "1af64b47a751ef62911e36c53d9889a3329c3651ee2d5daf8da2c73ff756face"
+      "sha256": "3f579cf97603107b5ef240a2da1be01a4f7cce11cb1b038e0a3bafc302a1e3c6"
     },
     {
       "path": "src/types/comment-delete-response.ts",
@@ -120,7 +120,11 @@
     },
     {
       "path": "src/types/comment-owner-kind.ts",
-      "sha256": "759994165ad4694af95d03bdba44ac73d2924ee708700ffe707d9b14016f55dc"
+      "sha256": "23a5352d06a552e2293c02ca0312b908de56e4d857b27906277bdb4922c91978"
+    },
+    {
+      "path": "src/types/comment-quote.ts",
+      "sha256": "9541f420dd0fccc903dc129917fe8daf8cc01baef39c36d2aaeb7718e5c75fef"
     },
     {
       "path": "src/types/comment-reaction-counts.ts",
@@ -156,7 +160,7 @@
     },
     {
       "path": "src/types/comment.ts",
-      "sha256": "3dae16ef100f1f508e6df97e791eb0afc64c1a3f6e386aa0a2bcfad0f7eb1ce3"
+      "sha256": "de72e70c68273ed0a27a8b698ad4f7461c1eca2a92449fec96d5eb2dc61c8029"
     },
     {
       "path": "src/types/comments-create-response201.ts",
@@ -192,7 +196,7 @@
     },
     {
       "path": "src/types/comments-thread-summary.ts",
-      "sha256": "b546821d9c64c6f806d95284b0f2628dddfa138da42f5e2d7f6d4fb10922f7be"
+      "sha256": "0e4be8b3c1e49847373831820e8f30f91cf028e5ede0616c66501c49050e93a9"
     },
     {
       "path": "src/types/comments-thread.ts",
@@ -300,7 +304,7 @@
     },
     {
       "path": "src/types/index.ts",
-      "sha256": "5b7451483c6f39103ecc269cf80c86ef811235086ded1382c43f70fc3ff595b2"
+      "sha256": "c1a713aad207ee950f6b0f51e7ef499ab1c076d3d8251ae6273b83aff1c13b52"
     },
     {
       "path": "src/types/page-info.ts",

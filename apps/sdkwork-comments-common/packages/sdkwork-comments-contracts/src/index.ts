@@ -1,10 +1,4 @@
-export type SdkworkCommentOwnerKind =
-  | "article"
-  | "course-lesson"
-  | "market-item"
-  | "news-item"
-  | "social-post"
-  | "video";
+export type SdkworkCommentOwnerKind = string;
 
 export type SdkworkCommentStatus = "deleted" | "hidden" | "pending-review" | "published";
 export type SdkworkCommentReactionType = "dislike" | "flag" | "heart" | "like";
@@ -29,14 +23,33 @@ export interface SdkworkCommentsThread {
 
 export interface SdkworkComment {
   authorId: string;
+  authorName?: string;
+  authorAvatarUrl?: string;
   body: string;
   createdAt: Date | number | string;
   deletedAt?: Date | number | string | null;
   id: string;
   parentId?: string;
+  rootId?: string;
+  quoteId?: string;
+  quote?: SdkworkCommentQuote;
+  replyCount?: number;
+  likeCount?: number;
+  viewerLiked?: boolean;
+  rating?: number;
+  metadata?: Record<string, unknown>;
+  editedAt?: Date | number | string;
   status: SdkworkCommentStatus;
   threadId: string;
   updatedAt?: Date | number | string | null;
+}
+
+export interface SdkworkCommentQuote {
+  id: string;
+  authorId: string;
+  authorName?: string;
+  body: string;
+  createdAt?: Date | number | string;
 }
 
 export interface SdkworkCommentReaction {
@@ -118,6 +131,11 @@ export interface SdkworkCommentsListRequest {
 export interface SdkworkCommentCreateRequest {
   body: string;
   parentId?: string;
+  quoteId?: string;
+  authorName?: string;
+  authorAvatarUrl?: string;
+  rating?: number;
+  metadata?: Record<string, unknown>;
 }
 
 export interface SdkworkCommentUpdateRequest {

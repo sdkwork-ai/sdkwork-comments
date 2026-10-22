@@ -1,7 +1,7 @@
 import { backendApiPath } from './paths';
-import type { HttpClient } from '../http/client';
+import type { ApiRequestOptions, HttpClient } from '../http/client';
 
-import type { CommentDeleteResponse, CommentModerationCaseListResponse, CommentModerationRequest, CommentModerationResponse, CommentsListResponse, CommentStatus, CommentsThreadListResponse, CommentsThreadSummaryResponse } from '../types';
+import type { Comment, CommentModerationCase, CommentModerationRequest, CommentModerationResponse, CommentStatus, CommentsThread, CommentsThreadSummaryResponse, PageInfo } from '../types';
 
 
 export interface CommentsModerationCasesListParams {
@@ -19,13 +19,13 @@ export class CommentsModerationCasesApi {
 
 
 /** List comments moderation cases. */
-  async list(params?: CommentsModerationCasesListParams): Promise<CommentModerationCaseListResponse> {
+  async list(params?: CommentsModerationCasesListParams, requestOptions?: ApiRequestOptions): Promise<{ items: CommentModerationCase[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<CommentModerationCaseListResponse>(appendQueryString(backendApiPath(`/comments/moderation/cases`), query));
+    return this.client.request<{ items: CommentModerationCase[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/comments/moderation/cases`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -40,8 +40,8 @@ export class CommentsModerationApi {
 
 
 /** Apply a moderation decision to a comment. */
-  async update(commentId: string, body: CommentModerationRequest): Promise<CommentModerationResponse> {
-    return this.client.patch<CommentModerationResponse>(backendApiPath(`/comments/comments/${serializePathParameter(commentId, { name: 'commentId', style: 'simple', explode: false })}/moderation`), body, undefined, undefined, 'application/json');
+  async update(commentId: string, body: CommentModerationRequest, requestOptions?: ApiRequestOptions): Promise<CommentModerationResponse> {
+    return this.client.request<CommentModerationResponse>(backendApiPath(`/comments/comments/${serializePathParameter(commentId, { name: 'commentId', style: 'simple', explode: false })}/moderation`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PATCH' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -60,18 +60,18 @@ export class CommentsCommentsApi {
 
 
 /** List comments in a thread for backend administration. */
-  async list(threadId: string, params?: CommentsCommentsListParams): Promise<CommentsListResponse> {
+  async list(threadId: string, params?: CommentsCommentsListParams, requestOptions?: ApiRequestOptions): Promise<{ items: Comment[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<CommentsListResponse>(appendQueryString(backendApiPath(`/comments/threads/${serializePathParameter(threadId, { name: 'threadId', style: 'simple', explode: false })}/comments`), query));
+    return this.client.request<{ items: Comment[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/comments/threads/${serializePathParameter(threadId, { name: 'threadId', style: 'simple', explode: false })}/comments`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Delete a comment as a backend operator. */
-  async delete(commentId: string): Promise<CommentDeleteResponse> {
-    return this.client.delete<CommentDeleteResponse>(backendApiPath(`/comments/comments/${serializePathParameter(commentId, { name: 'commentId', style: 'simple', explode: false })}`));
+  async delete(commentId: string, requestOptions?: ApiRequestOptions): Promise<void> {
+    return this.client.request<void>(backendApiPath(`/comments/comments/${serializePathParameter(commentId, { name: 'commentId', style: 'simple', explode: false })}`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'DELETE' as any });
   }
 }
 
@@ -89,28 +89,26 @@ export class CommentsThreadsApi {
 
 
 /** List comments threads for backend administration. */
-  async list(params?: CommentsThreadsListParams): Promise<CommentsThreadListResponse> {
+  async list(params?: CommentsThreadsListParams, requestOptions?: ApiRequestOptions): Promise<{ items: CommentsThread[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<CommentsThreadListResponse>(appendQueryString(backendApiPath(`/comments/threads`), query));
+    return this.client.request<{ items: CommentsThread[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/comments/threads`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Get a backend comments thread summary. */
-  async summary(threadId: string): Promise<CommentsThreadSummaryResponse> {
-    return this.client.get<CommentsThreadSummaryResponse>(backendApiPath(`/comments/threads/${serializePathParameter(threadId, { name: 'threadId', style: 'simple', explode: false })}/summary`));
+  async retrieve(threadId: string, requestOptions?: ApiRequestOptions): Promise<CommentsThreadSummaryResponse> {
+    return this.client.request<CommentsThreadSummaryResponse>(backendApiPath(`/comments/threads/${serializePathParameter(threadId, { name: 'threadId', style: 'simple', explode: false })}/summary`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
   }
 }
 
 export class CommentsApi {
-  private client: HttpClient;
   public readonly threads: CommentsThreadsApi;
   public readonly comments: CommentsCommentsApi;
   public readonly moderation: CommentsModerationApi;
 
   constructor(client: HttpClient) {
-    this.client = client;
     this.threads = new CommentsThreadsApi(client);
     this.comments = new CommentsCommentsApi(client);
     this.moderation = new CommentsModerationApi(client);

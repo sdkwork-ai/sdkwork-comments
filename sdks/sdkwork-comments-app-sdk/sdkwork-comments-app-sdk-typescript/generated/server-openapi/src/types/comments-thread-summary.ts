@@ -12,6 +12,8 @@ export interface CommentsThreadSummary {
   pendingReviewCount: number;
   hiddenCount: number;
   replyCount: number;
+  averageRating?: number;
+  ratingCount?: number;
   reactionCounts: CommentReactionCounts;
   latestActivityAt: string;
 }

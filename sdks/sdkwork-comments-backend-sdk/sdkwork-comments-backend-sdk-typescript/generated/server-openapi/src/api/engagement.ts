@@ -1,7 +1,7 @@
 import { backendApiPath } from './paths';
-import type { HttpClient } from '../http/client';
+import type { ApiRequestOptions, HttpClient } from '../http/client';
 
-import type { EngagementSummaryResponse, EngagementTargetKind, EngagementVisitListResponse } from '../types';
+import type { EngagementSummaryResponse, EngagementTargetKind, EngagementVisit, PageInfo } from '../types';
 
 
 export interface EngagementVisitsListParams {
@@ -21,7 +21,7 @@ export class EngagementVisitsApi {
 
 
 /** List cross-content visit history for backend inspection. */
-  async list(params?: EngagementVisitsListParams): Promise<EngagementVisitListResponse> {
+  async list(params?: EngagementVisitsListParams, requestOptions?: ApiRequestOptions): Promise<{ items: EngagementVisit[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
@@ -29,7 +29,7 @@ export class EngagementVisitsApi {
       { name: 'target_id', value: params?.targetId, style: 'form', explode: true, allowReserved: false },
       { name: 'user_id', value: params?.userId, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<EngagementVisitListResponse>(appendQueryString(backendApiPath(`/engagement/visits`), query));
+    return this.client.request<{ items: EngagementVisit[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/engagement/visits`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -42,18 +42,16 @@ export class EngagementTargetsApi {
 
 
 /** Get backend cross-content engagement summary for a target. */
-  async summary(targetKind: EngagementTargetKind, targetId: string): Promise<EngagementSummaryResponse> {
-    return this.client.get<EngagementSummaryResponse>(backendApiPath(`/engagement/targets/${serializePathParameter(targetKind, { name: 'targetKind', style: 'simple', explode: false })}/${serializePathParameter(targetId, { name: 'targetId', style: 'simple', explode: false })}/summary`));
+  async retrieve(targetKind: EngagementTargetKind, targetId: string, requestOptions?: ApiRequestOptions): Promise<EngagementSummaryResponse> {
+    return this.client.request<EngagementSummaryResponse>(backendApiPath(`/engagement/targets/${serializePathParameter(targetKind, { name: 'targetKind', style: 'simple', explode: false })}/${serializePathParameter(targetId, { name: 'targetId', style: 'simple', explode: false })}/summary`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
   }
 }
 
 export class EngagementApi {
-  private client: HttpClient;
   public readonly targets: EngagementTargetsApi;
   public readonly visits: EngagementVisitsApi;
 
   constructor(client: HttpClient) {
-    this.client = client;
     this.targets = new EngagementTargetsApi(client);
     this.visits = new EngagementVisitsApi(client);
   }

@@ -223,6 +223,32 @@
             }
           },
           {
+            "name": "parent_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "root_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["newest", "oldest"],
+              "default": "newest"
+            }
+          },
+          {
             "name": "Idempotency-Key",
             "in": "header",
             "required": true,
@@ -2183,14 +2209,9 @@
       },
       "CommentOwnerKind": {
         "type": "string",
-        "enum": [
-          "article",
-          "course-lesson",
-          "market-item",
-          "news-item",
-          "social-post",
-          "video"
-        ]
+        "minLength": 1,
+        "maxLength": 64,
+        "pattern": "^[a-z0-9][a-z0-9-]*$"
       },
       "CommentStatus": {
         "type": "string",
@@ -2258,6 +2279,33 @@
           }
         }
       },
+      "CommentQuote": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "authorId",
+          "body"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "authorId": {
+            "type": "string"
+          },
+          "authorName": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "Comment": {
         "type": "object",
         "additionalProperties": false,
@@ -2278,6 +2326,47 @@
           },
           "parentId": {
             "type": "string"
+          },
+          "rootId": {
+            "type": "string"
+          },
+          "quoteId": {
+            "type": "string"
+          },
+          "authorName": {
+            "type": "string"
+          },
+          "authorAvatarUrl": {
+            "type": "string"
+          },
+          "replyCount": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "likeCount": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "viewerLiked": {
+            "type": "boolean"
+          },
+          "rating": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "editedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "quote": {
+            "$ref": "#/components/schemas/CommentQuote"
           },
           "authorId": {
             "type": "string"
@@ -2543,6 +2632,16 @@
             "format": "int32",
             "minimum": 0
           },
+          "averageRating": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "ratingCount": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
           "reactionCounts": {
             "$ref": "#/components/schemas/CommentReactionCounts"
           },
@@ -2599,6 +2698,26 @@
           },
           "parentId": {
             "type": "string"
+          },
+          "quoteId": {
+            "type": "string"
+          },
+          "authorName": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "authorAvatarUrl": {
+            "type": "string",
+            "maxLength": 2048
+          },
+          "rating": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
           }
         }
       },

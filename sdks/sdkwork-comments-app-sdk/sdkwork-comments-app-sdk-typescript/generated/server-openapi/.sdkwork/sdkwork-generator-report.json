@@ -12,7 +12,7 @@
   "mode": "apply",
   "hasChanges": true,
   "hasDestructiveChanges": false,
-  "changeFingerprint": "6dfabb2a93d9286d8ecd2bd682d6700e16c5ebc8da0a22e4674b13cc614dc78a",
+  "changeFingerprint": "7c3b81db42913ed099dde91769ec832c3314ec1f505d350acf2f26adf79539c0",
   "changeImpact": {
     "schemaVersion": 1,
     "areas": [
@@ -49,6 +49,7 @@
           "src/types/comment-moderation-request.ts",
           "src/types/comment-moderation-response.ts",
           "src/types/comment-owner-kind.ts",
+          "src/types/comment-quote.ts",
           "src/types/comment-reaction-counts.ts",
           "src/types/comment-reaction-delete-response.ts",
           "src/types/comment-reaction-response.ts",
@@ -271,21 +272,21 @@
     "localVersions": []
   },
   "stats": {
-    "totalFiles": 86,
-    "models": 61,
+    "totalFiles": 87,
+    "models": 62,
     "apis": 2,
-    "types": 63
+    "types": 64
   },
   "warnings": [],
   "syncSummary": {
     "dryRun": false,
     "controlPlaneEnabled": true,
-    "writtenFiles": 86,
+    "writtenFiles": 87,
     "skippedScaffoldFiles": 0,
     "skippedUnchangedGeneratedFiles": 0,
     "deletedGeneratedFiles": 0,
     "changeSummaryPath": ".sdkwork/sdkwork-generator-changes.json",
-    "changeFingerprint": "6dfabb2a93d9286d8ecd2bd682d6700e16c5ebc8da0a22e4674b13cc614dc78a",
+    "changeFingerprint": "7c3b81db42913ed099dde91769ec832c3314ec1f505d350acf2f26adf79539c0",
     "changes": {
       "createdGeneratedFiles": [
         "bin/publish-core.mjs",
@@ -316,6 +317,7 @@
         "src/types/comment-moderation-request.ts",
         "src/types/comment-moderation-response.ts",
         "src/types/comment-owner-kind.ts",
+        "src/types/comment-quote.ts",
         "src/types/comment-reaction-counts.ts",
         "src/types/comment-reaction-delete-response.ts",
         "src/types/comment-reaction-response.ts",
@@ -419,6 +421,7 @@
             "src/types/comment-moderation-request.ts",
             "src/types/comment-moderation-response.ts",
             "src/types/comment-owner-kind.ts",
+            "src/types/comment-quote.ts",
             "src/types/comment-reaction-counts.ts",
             "src/types/comment-reaction-delete-response.ts",
             "src/types/comment-reaction-response.ts",

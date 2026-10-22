@@ -27,6 +27,9 @@ export interface CommentsCommentsListParams {
   page?: number;
   pageSize?: number;
   status?: CommentStatus;
+  parentId?: string;
+  rootId?: string;
+  sort?: 'newest' | 'oldest';
 }
 
 export class CommentsCommentsApi {
@@ -43,6 +46,9 @@ export class CommentsCommentsApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
+      { name: 'parent_id', value: params?.parentId, style: 'form', explode: true, allowReserved: false },
+      { name: 'root_id', value: params?.rootId, style: 'form', explode: true, allowReserved: false },
+      { name: 'sort', value: params?.sort, style: 'form', explode: true, allowReserved: false },
     ]);
     return this.client.request<{ items: Comment[]; pageInfo: PageInfo; }>(appendQueryString(appApiPath(`/comments/threads/${serializePathParameter(threadId, { name: 'threadId', style: 'simple', explode: false })}/comments`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
