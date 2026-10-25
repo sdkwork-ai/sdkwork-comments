@@ -23,7 +23,8 @@
     },
     "standard": {
       "common": [
-        "001_bootstrap.sql"
+        "001_bootstrap.sql",
+        "002_ai_model_eval_threads.sql"
       ],
       "locales": {
         "zh-CN": []
@@ -36,8 +37,10 @@
     "zh-CN": {
       "version": "1.0.0",
       "required": true,
-      "checksum": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "files": []
+      "checksum": "sha256:b649324ed3d9623851a954fc4aa7e34717920775c009ff1a40d3f5ed7efebe81",
+      "files": [
+        "locales/zh-CN/002_ai_model_eval_comments.sql"
+      ]
     }
   }
 }

@@ -6,7 +6,7 @@
     "name": "sdkwork-comments",
     "repository": "sdkwork-ai/sdkwork-comments",
     "sourcePath": ".",
-    "configPath": "sdkwork.app.config.json"
+    "configPath": "agent.app.config.json"
   },
   "release": {
     "artifactPrefix": "sdkwork-comments",
