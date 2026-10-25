@@ -78,3 +78,15 @@ sdks/**/*.d.ts.map
 # Local backup copies of previously generated SDK trees (superseded by the
 # tracked `server-openapi` directory). Targeted rule: only the `-old*` siblings.
 **/server-openapi-old*/
+
+# ---- auto-audited: local artifacts that must never be committed ----
+*.key
+*.pem
+*.p12
+*.pfx
+*.keystore
+tmp/
+temp/
+*.tmp
+*.temp
+.next/
