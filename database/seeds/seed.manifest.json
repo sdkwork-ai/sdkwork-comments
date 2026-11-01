@@ -27,7 +27,9 @@
         "002_ai_model_eval_threads.sql"
       ],
       "locales": {
-        "zh-CN": []
+        "zh-CN": [
+          "002_ai_model_eval_comments.sql"
+        ]
       }
     }
   },
