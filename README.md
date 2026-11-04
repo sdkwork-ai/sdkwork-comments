@@ -19,10 +19,16 @@ Comments and engagement code lives here so `sdkwork-appbase` can consume the cap
 - `sdks/sdkwork-comments-app-sdk`: app/client SDK family generated from `sdkwork-comments-app-api`.
 - `sdks/sdkwork-comments-backend-sdk`: backend/admin SDK family generated from `sdkwork-comments-backend-api`.
 
-Generated TypeScript SDKs expose two business roots:
+Generated SDKs expose two business roots:
 
 - `client.comments.*` for comment threads, comments, comment reactions, and moderation workflows.
 - `client.engagement.*` for cross-content likes, favorites, visit history, and target engagement summaries.
+
+The app SDK family currently publishes TypeScript and Flutter transports. Consumers must use the
+composed TypeScript facade (`@sdkwork/comments-app-sdk`) or the generated Flutter package
+(`sdkwork_comments_app_sdk_flutter`), never a generated transport path directly. The Flutter
+transport is generated with the canonical generator and checked with `dart analyze`; mobile
+applications adapt its response envelopes behind their own repository ports.
 
 Both SDK families use the canonical generator:
 

@@ -116,16 +116,25 @@ export interface SdkworkCommentsThreadSummary {
 }
 
 export interface SdkworkCommentsPageInfo {
-  page: number;
-  pageSize: number;
-  totalItems: number;
-  totalPages: number;
+  mode?: "cursor" | "offset";
+  page?: number;
+  pageSize?: number;
+  totalItems?: number | string;
+  totalPages?: number;
+  hasMore?: boolean;
+  nextCursor?: string | null;
 }
 
 export interface SdkworkCommentsListRequest {
   page?: number;
   pageSize?: number;
   status?: SdkworkCommentStatus;
+}
+
+export interface SdkworkCommentsThreadEnsureRequest {
+  ownerId: string;
+  ownerKind: SdkworkCommentOwnerKind;
+  title?: string;
 }
 
 export interface SdkworkCommentCreateRequest {
@@ -165,83 +174,83 @@ export interface SdkworkEngagementVisitListRequest {
 
 export interface SdkworkCommentResponse {
   comment: SdkworkComment;
-  requestId: string;
+  requestId?: string;
 }
 
 export interface SdkworkCommentDeleteResponse {
   commentId: string;
   deleted: boolean;
-  requestId: string;
+  requestId?: string;
 }
 
 export interface SdkworkCommentReactionResponse {
   reaction: SdkworkCommentReaction;
-  requestId: string;
+  requestId?: string;
 }
 
 export interface SdkworkCommentReactionDeleteResponse {
   commentId: string;
   deleted: boolean;
   reactionType: SdkworkCommentReactionType;
-  requestId: string;
+  requestId?: string;
 }
 
 export interface SdkworkEngagementReactionResponse {
   reaction: SdkworkEngagementReaction;
-  requestId: string;
+  requestId?: string;
 }
 
 export interface SdkworkEngagementReactionDeleteResponse {
   deleted: boolean;
   reactionType: Extract<SdkworkEngagementReactionType, "like">;
-  requestId: string;
+  requestId?: string;
   targetId: string;
   targetKind: SdkworkEngagementTargetKind;
 }
 
 export interface SdkworkEngagementFavoriteResponse {
   favorite: SdkworkEngagementFavorite;
-  requestId: string;
+  requestId?: string;
 }
 
 export interface SdkworkEngagementFavoriteDeleteResponse {
   deleted: boolean;
-  requestId: string;
+  requestId?: string;
   targetId: string;
   targetKind: SdkworkEngagementTargetKind;
 }
 
 export interface SdkworkEngagementVisitResponse {
-  requestId: string;
+  requestId?: string;
   visit: SdkworkEngagementVisit;
 }
 
 export interface SdkworkEngagementSummaryResponse {
-  requestId: string;
+  requestId?: string;
   summary: SdkworkEngagementSummary;
 }
 
 export interface SdkworkCommentsListResponse {
   items: SdkworkComment[];
   pageInfo: SdkworkCommentsPageInfo;
-  requestId: string;
+  requestId?: string;
 }
 
 export interface SdkworkEngagementVisitListResponse {
   items: SdkworkEngagementVisit[];
   pageInfo: SdkworkCommentsPageInfo;
-  requestId: string;
+  requestId?: string;
 }
 
 export interface SdkworkCommentsThreadSummaryResponse {
-  requestId: string;
+  requestId?: string;
   summary: SdkworkCommentsThreadSummary;
 }
 
 export interface SdkworkCommentsThreadListResponse {
   items: SdkworkCommentsThread[];
   pageInfo: SdkworkCommentsPageInfo;
-  requestId: string;
+  requestId?: string;
 }
 
 export interface SdkworkCommentModerationEvent {
@@ -266,13 +275,13 @@ export interface SdkworkCommentModerationCase {
 export interface SdkworkCommentModerationCaseListResponse {
   items: SdkworkCommentModerationCase[];
   pageInfo: SdkworkCommentsPageInfo;
-  requestId: string;
+  requestId?: string;
 }
 
 export interface SdkworkCommentModerationResponse {
   comment: SdkworkComment;
   moderationEvent: SdkworkCommentModerationEvent;
-  requestId: string;
+  requestId?: string;
 }
 
 export interface EvaluateCommentCommandReadinessOptions {

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "name": "sdkwork-comments-app-sdk",
+  "version": "1.0.0",
+  "language": "flutter",
+  "sdkType": "app",
+  "packageName": "sdkwork-comments-app-sdk-flutter",
+  "transportPackageName": "sdkwork-comments-app-sdk-flutter",
+  "consumerPackageName": "sdkwork-comments-app-sdk-flutter",
+  "generator": "@sdkwork/sdk-generator",
+  "capabilities": {
+    "supportsGeneratedTests": true,
+    "supportsReadme": true,
+    "supportsCustomScaffold": true,
+    "supportsPublishWorkflow": true,
+    "hasDistinctBuildStep": false
+  },
+  "generation": {
+    "readme": true,
+    "tests": false
+  },
+  "ownership": {
+    "generatedOwnership": "generated",
+    "scaffoldOwnership": "scaffold",
+    "scaffoldRoots": [
+      "custom/"
+    ],
+    "stateRoots": [
+      ".sdkwork/"
+    ]
+  }
+}

@@ -6,7 +6,8 @@
   "authoritySpec": "openapi/sdkwork-comments-app-api.openapi.yaml",
   "generationInputSpec": "openapi/sdkwork-comments-app-api.sdkgen.yaml",
   "derivedSpecs": {
-    "default": "openapi/sdkwork-comments-app-api.sdkgen.yaml"
+    "default": "openapi/sdkwork-comments-app-api.sdkgen.yaml",
+    "flutter": "openapi/sdkwork-comments-app-api.sdkgen.yaml"
   },
   "sdkOwner": "sdkwork-comments",
   "apiAuthority": "sdkwork-comments-app-api",
@@ -42,8 +43,31 @@
       "version": "1.0.0",
       "description": "Generator-owned typescript transport SDK for SDKWork Comments App API.",
       "generatedPath": "sdkwork-comments-app-sdk-typescript/generated/server-openapi"
+    },
+    {
+      "language": "flutter",
+      "workspace": "sdkwork-comments-app-sdk-flutter",
+      "generationState": "ready",
+      "releaseState": "not_published",
+      "packagePath": "sdkwork-comments-app-sdk-flutter/generated/server-openapi",
+      "manifestPath": "sdkwork-comments-app-sdk-flutter/generated/server-openapi/pubspec.yaml",
+      "consumerPackageName": "sdkwork_comments_app_sdk_flutter",
+      "name": "sdkwork_comments_app_sdk_flutter",
+      "version": "1.0.0",
+      "description": "Generator-owned Flutter transport SDK for SDKWork Comments App API.",
+      "generatedPath": "sdkwork-comments-app-sdk-flutter/generated/server-openapi",
+      "consumerSurface": {
+        "primaryClient": "SdkworkAppClient",
+        "apiPrefix": "/app/v3/api"
+      }
     }
   ],
+  "flutter": {
+    "root": "sdkwork-comments-app-sdk-flutter",
+    "transportRoot": "sdkwork-comments-app-sdk-flutter/generated/server-openapi",
+    "transportEntry": "sdkwork-comments-app-sdk-flutter/generated/server-openapi/lib/sdkwork_comments_app_sdk_flutter.dart",
+    "packageName": "sdkwork_comments_app_sdk_flutter"
+  },
   "metadata": {
     "managedBy": "sdks/materialize-comments-v3-openapi-boundaries.mjs",
     "standardVersion": "2026-06-06"
