@@ -41,5 +41,24 @@
         "source": "openapi"
       }
     ]
+  },
+  "roles": {
+    "domainStandardRoles": [],
+    "roleExclusions": [],
+    "roleGrantExtensions": [
+      {
+        "roleCode": "app_user",
+        "patterns": [
+          "comments.comments.write",
+          "comments.reactions.write"
+        ]
+      },
+      {
+        "roleCode": "org_admin",
+        "patterns": [
+          "comments.*"
+        ]
+      }
+    ]
   }
 }
